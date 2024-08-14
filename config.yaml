@@ -1,0 +1,14 @@
+#### Measurement 
+sensorNoise: 0.1
+inputDim: 2
+
+#### Hilbert space approximation parameters
+boundaryL: 5.5
+numE: 250
+
+#### Kernel parameters
+covFunc:
+  kernType: 'Matern'
+kernParams:
+  v: 1.5
+  l: 1.0
