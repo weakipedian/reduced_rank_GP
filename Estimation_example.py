@@ -9,7 +9,7 @@ def complexFunction(x, y):
     return np.sin(x) * np.cos(y) + 0.5 * np.sin(2 * x) * np.cos(2 * y)
 
 # Should be replaced with the path to your config file
-config_file_path = '/root/catkin_ws/src/gp_mapping/scripts/config.yaml'
+config_file_path = '/root/reduced_rank_GP/config.yaml'
 with open(config_file_path, 'r') as file:
     config = yaml.safe_load(file)
 
@@ -52,7 +52,7 @@ predSGP, varSGP = SGPmodel.predict(testXY)
 endKGPpredict = time.time()
 
 # Visualization
-fig = plt.figure(figsize=(20, 6))
+fig = plt.figure(figsize=(20, 8))
 fig.suptitle(f'Comparison of Ground Truth, Kernel-based GP, and Reduced-rank GP with measurements (N={trainXY.shape[0]})')
 
 groundTruth = fig.add_subplot(131)
@@ -65,12 +65,12 @@ kernGP = fig.add_subplot(132)
 kernGP.contourf(testX, testY, predKernGP.reshape(testX.shape), levels=100, cmap='viridis')
 kernGP.set_xlabel('X')
 kernGP.set_ylabel('Y')
-kernGP.set_title(f'[Kernel-based GP], update time: {endKGPupdate - startKGPupdate:.2f}s, predict time: {endKGPpredict - startKGPpredict:.2f}s')
+kernGP.set_title(f'[Kernel-based GP] \n update time: {endKGPupdate - startKGPupdate:.2f}s, predict time: {endKGPpredict - startKGPpredict:.2f}s')
 
 apxGP = fig.add_subplot(133)
 apxGP.contourf(testX, testY, predSGP.reshape(testX.shape), levels=100, cmap='viridis')
 apxGP.set_xlabel('X')
 apxGP.set_ylabel('Y')
-apxGP.set_title(f'[Reduced-rank GP], update time: {endSGPupdate - startSGPupdate:.2f}s, predict time: {endKGPpredict - startKGPpredict:.2f}s')
+apxGP.set_title(f'[Reduced-rank GP] \n update time: {endSGPupdate - startSGPupdate:.2f}s, predict time: {endKGPpredict - startKGPpredict:.2f}s')
 
 plt.show()
