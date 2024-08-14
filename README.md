@@ -13,4 +13,5 @@ You can set hyperparameters for the kernel function (currently, only the Matern 
 - 'ReducedRankGPLib.py':  A library for sparse GPR, including methods for model updates, query test inputs, and more.
 
 # requirements for kernel-based GPR
+'''bash
 pip3 install GPy
